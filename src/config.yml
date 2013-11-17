@@ -1,0 +1,42 @@
+# The amount of seconds to wait before changing to the next map
+mapChange: 1800
+
+# Duel spawn points
+duel:
+  '1':
+    x: 0
+    y: 60
+    z: 0
+    pitch: 0
+    yaw: 0
+    world: world
+  '2':
+    x: 0
+    y: 60
+    z: 0
+    pitch: 0
+    yaw: 0
+    world: world
+
+# Map Name List
+arenas:
+  - arena1
+  - arena2
+
+arena:
+  arena1:
+    name: 'Arena 1'
+    x: 0
+    y: 60
+    z: 0
+    pitch: 0
+    yaw: 0
+    world: world
+  arena2:
+    name: 'Arena 2'
+    x: 0
+    y: 60
+    z: 0
+    pitch: 0
+    yaw: 0
+    world: world

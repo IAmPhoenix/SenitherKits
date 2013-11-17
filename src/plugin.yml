@@ -1,0 +1,86 @@
+name: Kits
+main: net.Senither.Kits.Kits
+version: 0.9.5 R1.7
+author: Senither
+depend: [TagAPI]
+description: Kit PvP Plugin
+
+commands:
+  ## Main commands
+  help:
+    description: Help menu
+  map:
+    description: Map menu
+  enchants:
+    description: Show all enchants
+  buffs:
+    description: Show all buffs
+  debuffs:
+    description: Show all debuffs
+  armor:
+    description: Show all types of armor
+  weapons:
+    description: Show all weapons
+  extra:
+    description: Show you everything else you can buy
+  stats:
+    description: See stats about yourself and other players
+  addcredits:
+    description: Add credits to a player
+  modify:
+    description: Modify a players stats
+  ## Enchant Commands
+  sharp:
+    description: Enchant sharpness
+  power:
+    description: Enchant power
+  knockback:
+    description: Enchant knockback
+  protect:
+    description: Enchant protection
+  ## Buffs Commands
+  speed:
+    description: Buff the player with a speed boost
+  strength:
+    description: Buff the player with strength
+  regen:
+    description: Buff the player with regen
+  ## Debuffs Commands
+  hunger:
+    description: Toggles hunger
+  slow:
+    description: Debuff the player with slowness
+  weak:
+    description: Debuff the player with weakness
+  ## Armor commands
+  diamond:
+    description: Change all armor to diamond
+  iron:
+    description: Change all armor to iron
+  gold:
+    description: Change all armor to gold
+  leather:
+    description: Change all armor to leather
+  ## Weapon commands
+  sword:
+    description: Change weapon to a sword
+  bow:
+    description: Change weapon to a bow
+  axe:
+    description: Change weapon to an axe
+  ## Extra commands
+  soup:
+    description: Refills the inventory with soup
+  snowball:
+    description: Buy snowballs
+  tnt:
+    description: Buy TNT Blocks
+  ## Other commands
+  build:
+    description: Toggles building mode
+  guide:
+    description: Guide on how to use the kit plugin
+  spectate:
+    description: Spectate fights
+  duel:
+    description: Duel another player

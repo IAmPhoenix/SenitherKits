@@ -78,9 +78,11 @@ public class Kits extends JavaPlugin
         scoreboard = new ScoreboardManager(this);
         mapHandler = new MapHandler(this);
         vanish = new VanishHandler(this);
-        duel = new DuelHandler(this);
+        //duel = new DuelHandler(this);
 
         // Create command executers
+        getCommand("map").setExecutor(mapHandler);
+        
         ArmourCommands ac = new ArmourCommands(this);
         getCommand("armor").setExecutor(ac);
         getCommand("diamond").setExecutor(ac);
@@ -110,10 +112,10 @@ public class Kits extends JavaPlugin
         getCommand("soup").setExecutor(exc);
         getCommand("snowball").setExecutor(exc);
         getCommand("tnt").setExecutor(exc);
+        getCommand("pay").setExecutor(exc);
 
         ManagerCommands mc = new ManagerCommands(this);
         getCommand("build").setExecutor(mc);
-        getCommand("map").setExecutor(mc);
         getCommand("help").setExecutor(mc);
         getCommand("guide").setExecutor(mc);
         getCommand("spectate").setExecutor(mc);
@@ -130,6 +132,11 @@ public class Kits extends JavaPlugin
 
         KitsCommands kc = new KitsCommands(this);
         getCommand("kits").setExecutor(kc);
+        getCommand("knight").setExecutor(kc);
+        getCommand("archer").setExecutor(kc);
+        getCommand("medic").setExecutor(kc);
+        getCommand("mage").setExecutor(kc);
+        getCommand("ninja").setExecutor(kc);
 
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         getServer().getPluginManager().registerEvents(new BlockListener(this), this);

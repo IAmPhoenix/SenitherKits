@@ -1,6 +1,6 @@
 name: Kits
 main: net.Senither.Kits.Kits
-version: 0.9.5 R1.9
+version: 0.9.6 R1.0
 author: Senither
 depend: [TagAPI]
 description: Kit PvP Plugin
@@ -68,6 +68,20 @@ commands:
     description: Change weapon to a bow
   axe:
     description: Change weapon to an axe
+  ## Kits commands
+  kits:
+    description: Pre-definded kits
+    aliases: [kit]
+  knight:
+    description: Default kit
+  archer:
+    description: Archer Kit
+  medic:
+    description: Medic Kit
+  mage:
+    description: Mage Kit
+  ninja:
+    description: Ninja Kit
   ## Extra commands
   soup:
     description: Refills the inventory with soup
@@ -84,6 +98,5 @@ commands:
     description: Spectate fights
   duel:
     description: Duel another player
-  kits:
-    description: Pre-definded kits
-    
+  pay:
+    description: Send money to another player

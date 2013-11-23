@@ -1,6 +1,7 @@
 package net.Senither.Kits.commands;
 
 import net.Senither.Kits.Kits;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -41,6 +42,8 @@ public class ExtraCommands implements CommandExecutor
             snowball(player);
         } else if (commandLable.equalsIgnoreCase("tnt")) {
             tnt(player);
+        } else if (commandLable.equalsIgnoreCase("pay")) {
+            payPlayer(player, args);
         }
 
         return false;
@@ -102,5 +105,46 @@ public class ExtraCommands implements CommandExecutor
         i.addItem(new ItemStack(Material.TNT, 1));
 
         _plugin.controller.playerFinishTransaction(player, "TNT Block", 100.00d);
+    }
+
+    private void payPlayer(Player player, String[] args)
+    {
+        if(args.length != 2) {
+            _plugin.chatManager.sendMessage(player, "&cInvalid format!");
+            _plugin.chatManager.sendMessage(player, "&cFormat: /<command> <player> <amount>");
+            return;
+        }
+        
+        Player target = Bukkit.getPlayer(args[0]);
+
+        if (target == null) {
+            _plugin.chatManager.sendMessage(player, "&c" + args[0] + " is offline!");
+            return;
+        }
+
+        int payment = 0;
+        try {
+            payment = Integer.parseInt(args[1]);
+        } catch (NumberFormatException e) {
+            _plugin.chatManager.sendMessage(player, "&cThe amount has be to a number!");
+            _plugin.chatManager.sendMessage(player, "&cFormat: /<command> <player> <amount>");
+            return;
+        }
+
+        if (payment <= 0) {
+            _plugin.chatManager.sendMessage(player, "&cInvailed number, atleast let the number be above 0.");
+            return;
+        }
+
+        if (payment >= _plugin.playerEco.get(player.getName())) {
+            _plugin.chatManager.sendMessage(player, "&cYou don't have enough credits to send that amount!");
+            return;
+        }
+
+        _plugin.playerEco.put(player.getName(), (_plugin.playerEco.get(player.getName()) - payment));
+        _plugin.playerEco.put(target.getName(), (_plugin.playerEco.get(target.getName()) + payment));
+
+        _plugin.chatManager.sendMessage(player, "&aYou have sent " + payment + " to " + target.getName() + "!");
+        _plugin.chatManager.sendMessage(player, "&a" + player.getName() + " has sent you " + payment + " credits!");
     }
 }

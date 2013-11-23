@@ -60,6 +60,12 @@ public class YAMLManager
                 fileConfiguration.set("achivements.armour.leather", false);
                 fileConfiguration.set("achivements.kit.ninja", false);
                 fileConfiguration.set("achivements.kit.medic", false);
+                fileConfiguration.set("achivements.kills.100", false);
+                fileConfiguration.set("achivements.kills.500", false);
+                fileConfiguration.set("achivements.kills.1000", false);
+                fileConfiguration.set("achivements.kills.2500", false);
+                fileConfiguration.set("achivements.kills.5000", false);
+                fileConfiguration.set("achivements.kills.10000", false);
 
                 fileConfiguration.save(configFile);
             } catch (IOException ex) {

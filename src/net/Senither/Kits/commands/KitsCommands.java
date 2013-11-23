@@ -32,7 +32,7 @@ public class KitsCommands implements CommandExecutor
 
         Player player = (Player) sender;
 
-        if (args.length == 0) {
+        if (commandLable.equalsIgnoreCase("kits") || commandLable.equalsIgnoreCase("kit")) {
             _plugin.chatManager.sendMessage(player, "&e -------- &6Weapon Menu&e --------");
             _plugin.chatManager.sendMessage(player, "&6/Knight&f: Price: 10 Credits");
             _plugin.chatManager.sendMessage(player, "&6/Archer&f: Price: 10 Credits");
@@ -40,18 +40,16 @@ public class KitsCommands implements CommandExecutor
             _plugin.chatManager.sendMessage(player, "&6/Mage&f: Price: 200 Credits");
             _plugin.chatManager.sendMessage(player, "&6/Ninja&f: Price: 300 Credits");
             return true;
-        } else {
-            if (args[0].equalsIgnoreCase("Knight")) {
-                knight(player);
-            } else if (args[0].equalsIgnoreCase("Archer")) {
-                archer(player);
-            } else if (args[0].equalsIgnoreCase("Medic")) {
-                medic(player);
-            } else if (args[0].equalsIgnoreCase("Mage")) {
-                mage(player);
-            } else if (args[0].equalsIgnoreCase("Ninja")) {
-                ninja(player);
-            }
+        } else if (commandLable.equalsIgnoreCase("Knight")) {
+            knight(player);
+        } else if (commandLable.equalsIgnoreCase("Archer")) {
+            archer(player);
+        } else if (commandLable.equalsIgnoreCase("Medic")) {
+            medic(player);
+        } else if (commandLable.equalsIgnoreCase("Mage")) {
+            mage(player);
+        } else if (commandLable.equalsIgnoreCase("Ninja")) {
+            ninja(player);
         }
 
         return true;
@@ -113,11 +111,12 @@ public class KitsCommands implements CommandExecutor
         weapon.addEnchantment(Enchantment.ARROW_INFINITE, 1);
 
         i.addItem(weapon);
-        i.addItem(new ItemStack(Material.ARROW, 1));
 
         for (int s = 1; s <= 27; s++) {
             i.addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
         }
+
+        i.addItem(new ItemStack(Material.ARROW, 1));
 
         _plugin.controller.playerFinishTransaction(player, "Archer Kit", 10.00d);
         _plugin.controller.calPlayerWorth(player, true);
@@ -128,8 +127,8 @@ public class KitsCommands implements CommandExecutor
         if (!_plugin.controller.playerTransaction(player, 100.00d)) {
             return;
         }
-        
-        if(!_plugin.playerUsingKits.contains(player.getName())) {
+
+        if (!_plugin.playerUsingKits.contains(player.getName())) {
             _plugin.playerUsingKits.add(player.getName());
         }
 
@@ -165,8 +164,8 @@ public class KitsCommands implements CommandExecutor
         if (!_plugin.controller.playerTransaction(player, 200.00d)) {
             return;
         }
-        
-        if(!_plugin.playerUsingKits.contains(player.getName())) {
+
+        if (!_plugin.playerUsingKits.contains(player.getName())) {
             _plugin.playerUsingKits.add(player.getName());
         }
 
@@ -221,8 +220,8 @@ public class KitsCommands implements CommandExecutor
         if (!_plugin.controller.playerTransaction(player, 300.00d)) {
             return;
         }
-        
-        if(!_plugin.playerUsingKits.contains(player.getName())) {
+
+        if (!_plugin.playerUsingKits.contains(player.getName())) {
             _plugin.playerUsingKits.add(player.getName());
         }
 
@@ -232,15 +231,15 @@ public class KitsCommands implements CommandExecutor
         ItemStack chestplate = new ItemStack(Material.LEATHER_CHESTPLATE, 1);
         ItemStack leggins = new ItemStack(Material.LEATHER_LEGGINGS, 1);
         ItemStack boots = new ItemStack(Material.LEATHER_BOOTS, 1);
-        
-        healmet.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
-        healmet.addEnchantment(Enchantment.PROTECTION_FALL, 1);
-        chestplate.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
-        chestplate.addEnchantment(Enchantment.PROTECTION_FALL, 1);
-        leggins.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
-        leggins.addEnchantment(Enchantment.PROTECTION_FALL, 1);
-        boots.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
-        boots.addEnchantment(Enchantment.PROTECTION_FALL, 1);
+
+        healmet.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
+        healmet.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 1);
+        chestplate.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
+        chestplate.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 1);
+        leggins.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
+        leggins.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 1);
+        boots.addUnsafeEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 1);
+        boots.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 1);
 
         LeatherArmorMeta healmetMeta = (LeatherArmorMeta) healmet.getItemMeta();
         LeatherArmorMeta chestplateMeta = (LeatherArmorMeta) chestplate.getItemMeta();
@@ -256,16 +255,19 @@ public class KitsCommands implements CommandExecutor
         chestplate.setItemMeta(chestplateMeta);
         leggins.setItemMeta(legginsMeta);
         boots.setItemMeta(bootsMeta);
-        
+
         player.getInventory().setHelmet(healmet);
         player.getInventory().setChestplate(chestplate);
         player.getInventory().setLeggings(leggins);
         player.getInventory().setBoots(boots);
 
         Inventory i = player.getInventory();
-        
-        i.addItem(new ItemStack(Material.DIAMOND_SWORD, 1));
-        
+
+        ItemStack weapon = new ItemStack(Material.DIAMOND_SWORD, 1);
+        weapon.addEnchantment(Enchantment.DAMAGE_ALL, 2);
+
+        i.addItem(weapon);
+
         for (int s = 1; s <= 27; s++) {
             i.addItem(new ItemStack(Material.MUSHROOM_SOUP, 1));
         }

@@ -7,10 +7,13 @@ import net.Senither.Kits.api.events.ChangeMapEvent;
 import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.Location;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.kitteh.tag.TagAPI;
 
-public class MapHandler
+public class MapHandler implements CommandExecutor
 {
 
     private final Kits _plugin;
@@ -135,5 +138,27 @@ public class MapHandler
         location.setPitch(pitch);
         location.setYaw(yaw);
         return location;
+    }
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String commandLable, String[] args)
+    {
+        Player player = null;
+        
+        if(sender instanceof Player) {
+            player = (Player) sender;
+        } else {
+            _plugin.chatManager.sendMessage(sender, "You can't use that command in-game!");
+            return true;
+        }
+        
+        if(!player.hasPermission(_plugin.permissions.MANAGE_MAP)) {
+            _plugin.chatManager.missingPermission(player, _plugin.permissions.MANAGE_MAP);
+            return true;
+        }
+        
+        _plugin.chatManager.sendMessage(player, " &eThis feature has not yet been implemented!");
+        
+        return true;
     }
 }

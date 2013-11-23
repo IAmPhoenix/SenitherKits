@@ -54,8 +54,6 @@ public class ManagerCommands implements CommandExecutor
 
         if (commandLable.equalsIgnoreCase("build")) {
             buildToggle(player);
-        } else if (commandLable.equalsIgnoreCase("map")) {
-            mapMenu(player, args);
         } else if (commandLable.equalsIgnoreCase("help")) {
             helpMenu(player);
         } else if (commandLable.equalsIgnoreCase("guide")) {
@@ -129,11 +127,6 @@ public class ManagerCommands implements CommandExecutor
         }
     }
 
-    private void mapMenu(Player player, String[] args)
-    {
-        _plugin.chatManager.sendMessage(player, " &eThis feature has not yet been implemented!");
-    }
-
     private void helpMenu(Player player)
     {
         // Send help menu
@@ -144,8 +137,9 @@ public class ManagerCommands implements CommandExecutor
         _plugin.chatManager.sendMessage(player, "&6/debuffs&f: List of Debuffs");
         _plugin.chatManager.sendMessage(player, "&6/armor&f: List of Armor types");
         _plugin.chatManager.sendMessage(player, "&6/weapons&f: List of Weapons");
+        _plugin.chatManager.sendMessage(player, "&6/Kits&f: List of Kits");
         _plugin.chatManager.sendMessage(player, "&6/extra&f: List of Extra Suff");
-        _plugin.chatManager.sendMessage(player, "&6/dual <name>&f: Dual another player");
+        _plugin.chatManager.sendMessage(player, "&6/duel <name>&f: Duel another player");
         _plugin.chatManager.sendMessage(player, "&6/spectate&f: Goes into spectate mode");
     }
 

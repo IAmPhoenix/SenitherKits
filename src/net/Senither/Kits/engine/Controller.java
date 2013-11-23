@@ -124,6 +124,12 @@ public class Controller
         config.getConfig().set("achivements.armour.leather", false);
         config.getConfig().set("achivements.kit.ninja", false);
         config.getConfig().set("achivements.kit.medic", false);
+        config.getConfig().set("achivements.kills.100", false);
+        config.getConfig().set("achivements.kills.500", false);
+        config.getConfig().set("achivements.kills.1000", false);
+        config.getConfig().set("achivements.kills.2500", false);
+        config.getConfig().set("achivements.kills.5000", false);
+        config.getConfig().set("achivements.kills.10000", false);
 
         config.saveConfig();
 
@@ -132,7 +138,7 @@ public class Controller
 
     public void removePlayer(Player player)
     {
-        _plugin.duel.removePlayer(player.getName());
+        //_plugin.duel.removePlayer(player.getName());
         _plugin.playerKillstreak.remove(player.getName());
         _plugin.playerEco.remove(player.getName());
         _plugin.playerDeaths.remove(player.getName());

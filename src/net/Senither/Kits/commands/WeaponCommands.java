@@ -34,6 +34,7 @@ public class WeaponCommands implements CommandExecutor
 
         if (commandLable.equalsIgnoreCase("weapons")) {
             weaponMenu(player);
+            return true;
         }
         
         if(_plugin.playerUsingKits.contains(player.getName())) {

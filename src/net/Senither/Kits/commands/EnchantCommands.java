@@ -33,6 +33,7 @@ public class EnchantCommands implements CommandExecutor
 
         if (commandLable.equalsIgnoreCase("enchants")) {
             enchantMenu(player);
+            return true;
         }
         
         if(_plugin.playerUsingKits.contains(player.getName())) {

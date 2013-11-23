@@ -1,6 +1,6 @@
 name: Kits
 main: net.Senither.Kits.Kits
-version: 0.9.5 R1.7
+version: 0.9.5 R1.9
 author: Senither
 depend: [TagAPI]
 description: Kit PvP Plugin
@@ -84,3 +84,6 @@ commands:
     description: Spectate fights
   duel:
     description: Duel another player
+  kits:
+    description: Pre-definded kits
+    

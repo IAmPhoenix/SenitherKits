@@ -13,6 +13,7 @@ import net.Senither.Kits.commands.ArmourCommands;
 import net.Senither.Kits.commands.BuffCommands;
 import net.Senither.Kits.commands.EnchantCommands;
 import net.Senither.Kits.commands.ExtraCommands;
+import net.Senither.Kits.commands.KitsCommands;
 import net.Senither.Kits.commands.ManagerCommands;
 import net.Senither.Kits.commands.WeaponCommands;
 import net.Senither.Kits.engine.Controller;
@@ -58,6 +59,7 @@ public class Kits extends JavaPlugin
     // Players in these lists will have the debuff enabled
     public List<String> slowList = new ArrayList<String>();
     public List<String> weakList = new ArrayList<String>();
+    public List<String> playerUsingKits = new ArrayList<String>();
 
     @Override
     public void onEnable()
@@ -125,6 +127,9 @@ public class Kits extends JavaPlugin
         getCommand("sword").setExecutor(wc);
         getCommand("bow").setExecutor(wc);
         getCommand("axe").setExecutor(wc);
+
+        KitsCommands kc = new KitsCommands(this);
+        getCommand("kits").setExecutor(kc);
 
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         getServer().getPluginManager().registerEvents(new BlockListener(this), this);

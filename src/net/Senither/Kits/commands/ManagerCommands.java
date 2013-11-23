@@ -211,6 +211,7 @@ public class ManagerCommands implements CommandExecutor
                 p.sendMessage(ChatColor.LIGHT_PURPLE + " Pink " + ChatColor.GRAY + ": Sets you on fire. 30 seconds cooldown");
                 p.sendMessage(ChatColor.DARK_PURPLE + " Magenta " + ChatColor.GRAY + ": Give you a nausea effect. 2 minutes cooldown");
                 p.sendMessage(ChatColor.DARK_GREEN + " Dark Green " + ChatColor.GRAY + ": Makes you go BOOM. 30 seconds cooldown");
+                p.sendMessage(ChatColor.BLUE + " Blue " + ChatColor.GRAY + ": TP's you up and down. No cooldown.");
                 p.sendMessage(ChatColor.YELLOW + " ---------------------------------------------------- ");
             } else {
                 p.sendMessage(ChatColor.RED + "Couldn't find the guide you were looking for");

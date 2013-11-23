@@ -2,3 +2,23 @@ kills: 0
 deaths: 0
 credits: 10
 dualscore: 0
+higestKillstreak: 0
+
+lastlogin: 0
+
+achivements:
+  killstreak:
+    10: false
+    25: false
+    50: false
+    75: false
+    100: false
+  enchants:
+    sharpness4: false
+    protection3: false
+  armour:
+    diamons: false
+    leather: false
+  kit:
+    ninja: false
+    medic: false

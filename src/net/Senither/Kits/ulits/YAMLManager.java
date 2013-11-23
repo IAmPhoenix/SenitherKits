@@ -45,6 +45,21 @@ public class YAMLManager
                 fileConfiguration.set("deaths", 0);
                 fileConfiguration.set("credits", 10);
                 fileConfiguration.set("dualscore", 0);
+                fileConfiguration.set("higestKillstreak", 0);
+                
+                fileConfiguration.set("lastlogin", 0);
+                
+                fileConfiguration.set("achivements.killstreak.10", false);
+                fileConfiguration.set("achivements.killstreak.25", false);
+                fileConfiguration.set("achivements.killstreak.50", false);
+                fileConfiguration.set("achivements.killstreak.75", false);
+                fileConfiguration.set("achivements.killstreak.100", false);
+                fileConfiguration.set("achivements.enchants.sharpness4", false);
+                fileConfiguration.set("achivements.enchants.protection3", false);
+                fileConfiguration.set("achivements.armour.diamond", false);
+                fileConfiguration.set("achivements.armour.leather", false);
+                fileConfiguration.set("achivements.kit.ninja", false);
+                fileConfiguration.set("achivements.kit.medic", false);
 
                 fileConfiguration.save(configFile);
             } catch (IOException ex) {

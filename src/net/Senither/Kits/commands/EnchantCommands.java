@@ -33,7 +33,14 @@ public class EnchantCommands implements CommandExecutor
 
         if (commandLable.equalsIgnoreCase("enchants")) {
             enchantMenu(player);
-        } else if (commandLable.equalsIgnoreCase("sharp")) {
+        }
+        
+        if(_plugin.playerUsingKits.contains(player.getName())) {
+            _plugin.chatManager.sendMessage(player, "&cYou can't use this command while wearing a special kit a kit!");
+            return true;
+        }
+        
+        if (commandLable.equalsIgnoreCase("sharp")) {
             sharpness(player);
         } else if (commandLable.equalsIgnoreCase("power")) {
             power(player);

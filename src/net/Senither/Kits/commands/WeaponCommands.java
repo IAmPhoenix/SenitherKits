@@ -34,7 +34,14 @@ public class WeaponCommands implements CommandExecutor
 
         if (commandLable.equalsIgnoreCase("weapons")) {
             weaponMenu(player);
-        } else if (commandLable.equalsIgnoreCase("sword")) {
+        }
+        
+        if(_plugin.playerUsingKits.contains(player.getName())) {
+            _plugin.chatManager.sendMessage(player, "&cYou can't use this command while using a kit!");
+            return true;
+        }
+        
+        if (commandLable.equalsIgnoreCase("sword")) {
             sword(player);
         } else if (commandLable.equalsIgnoreCase("bow")) {
             bow(player);

@@ -125,7 +125,11 @@ public class PlayerListener implements Listener
 
         int killerKS = _plugin.playerKillstreak.get(killer.getName()) + 1;
         _plugin.playerKillstreak.put(killer.getName(), killerKS);
-
+        
+        // Resetting kits
+        if(_plugin.playerUsingKits.contains(player.getName())) {
+            _plugin.playerUsingKits.remove(player.getName());
+        }
 
         // Killstreak broadcast
         boolean broadcastKillstreak = false;

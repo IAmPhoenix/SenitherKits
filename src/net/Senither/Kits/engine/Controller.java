@@ -109,6 +109,22 @@ public class Controller
         config.getConfig().set("kills", _plugin.playerKills.get(player.getName()));
         config.getConfig().set("deaths", _plugin.playerDeaths.get(player.getName()));
 
+        // This is only TEMP!
+        // Set new values for later updates
+        config.getConfig().set("lastlogin", 0);
+
+        config.getConfig().set("achivements.killstreak.10", false);
+        config.getConfig().set("achivements.killstreak.25", false);
+        config.getConfig().set("achivements.killstreak.50", false);
+        config.getConfig().set("achivements.killstreak.75", false);
+        config.getConfig().set("achivements.killstreak.100", false);
+        config.getConfig().set("achivements.enchants.sharpness4", false);
+        config.getConfig().set("achivements.enchants.protection3", false);
+        config.getConfig().set("achivements.armour.diamond", false);
+        config.getConfig().set("achivements.armour.leather", false);
+        config.getConfig().set("achivements.kit.ninja", false);
+        config.getConfig().set("achivements.kit.medic", false);
+
         config.saveConfig();
 
         _plugin.playerConfig.remove(player.getName());
@@ -144,11 +160,11 @@ public class Controller
         if (player.hasPotionEffect(PotionEffectType.REGENERATION)) {
             player.removePotionEffect(PotionEffectType.REGENERATION);
         }
-        
-        if(_plugin.vanish.isVanished(player)) {
+
+        if (_plugin.vanish.isVanished(player)) {
             _plugin.vanish.showPlayer(player);
         }
-        
+
     }
 
     public void resetPlayer(Player player, boolean completeReset)
@@ -228,6 +244,8 @@ public class Controller
             } else if (type == Material.IRON_HELMET || type == Material.IRON_CHESTPLATE || type == Material.IRON_LEGGINGS || type == Material.IRON_BOOTS) {
                 worth = 10.0;
             } else if (type == Material.GOLD_HELMET || type == Material.GOLD_CHESTPLATE || type == Material.GOLD_LEGGINGS || type == Material.GOLD_BOOTS) {
+                worth = 8.2;
+            } else if (type == Material.CHAINMAIL_HELMET || type == Material.CHAINMAIL_CHESTPLATE || type == Material.CHAINMAIL_LEGGINGS || type == Material.CHAINMAIL_BOOTS) {
                 worth = 8.2;
             } else {
                 worth = 7.5;

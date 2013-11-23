@@ -32,7 +32,14 @@ public class BuffCommands implements CommandExecutor
 
         if (commandLable.equalsIgnoreCase("buffs")) {
             buffMenu(player);
-        } else if (commandLable.equalsIgnoreCase("debuffs")) {
+            return true;
+        } 
+        
+        if(_plugin.playerUsingKits.contains(player.getName())) {
+            _plugin.chatManager.sendMessage(player, "&cYou can't use this command while wearing a special kit a kit!");
+        }
+        
+        if (commandLable.equalsIgnoreCase("debuffs")) {
             debuffMenu(player);
         } else if (commandLable.equalsIgnoreCase("speed")) {
             speed(player);

@@ -239,6 +239,16 @@ public class ManagerCommands implements CommandExecutor
             return;
         }
         
+        if(_plugin.duel.isPlayerInBattle(player.getName())) {
+            _plugin.chatManager.sendMessage(player, "&cYou can't challange people to a duel when you're in a battle!");
+            return;
+        }
+        
+        if(_plugin.duel.isPlayerInQueue(player.getName())) {
+            _plugin.chatManager.sendMessage(player, "&cYou're alrady in a duel queue!");
+            return;
+        }
+        
         _plugin.duel.challangePlayer(player, target);
     }
 

@@ -229,6 +229,7 @@ public class DuelHandler
         }
 
         inProgress.cancelQueue(_plugin.mapHandler.getSpawnLocation());
+        inProgress.resetPlayerData();
         inProgress = null;
         counter = 6;
         stage = 0;

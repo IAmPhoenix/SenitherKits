@@ -116,7 +116,5 @@ public class Queue
                 TagAPI.refreshPlayer(player);
             }
         }
-        // Reset the players inventory
-        resetPlayerData();
     }
 }

@@ -441,28 +441,41 @@ public class Controller
 
     public void manageDuelRewards(Player winner, Player losser)
     {
-        int elo = _plugin.playerDuelScore.get(losser.getName());
+        if (losser != null) {
+            int elo = _plugin.playerDuelScore.get(losser.getName());
 
-        int add = 1;
-        int sub = 0;
+            int add = 1;
+            int sub = 0;
 
-        if (elo <= -50) {
-            sub = 1;
-        } else if (elo <= 0) {
-            sub = 1;
-        } else if (elo <= 75) {
-            sub = 1;
-        } else if (elo <= 150) {
-            sub = 1;
-        } else if (elo <= 300) {
-            sub = 2;
-        } else if (elo <= 500) {
-            sub = 2;
+            if (elo <= -50) {
+                sub = 1;
+            } else if (elo <= 0) {
+                sub = 1;
+            } else if (elo <= 75) {
+                sub = 1;
+            } else if (elo <= 150) {
+                sub = 1;
+            } else if (elo <= 300) {
+                sub = 2;
+            } else if (elo <= 500) {
+                sub = 2;
+            }
+
+            _plugin.playerDuelScore.put(winner.getName(), (_plugin.playerDuelScore.get(winner.getName()) + add));
+            _plugin.chatManager.sendMessage(winner, "&3You got &b" + add + " &3duel score for winning the duel!");
+            _plugin.playerDuelScore.put(losser.getName(), (_plugin.playerDuelScore.get(losser.getName()) - sub));
+            _plugin.chatManager.sendMessage(losser, "&3You lost &b" + sub + " &3duel score for lossing the duel!");
+        } else {
+            int add = 1;
+            int sub = 5;
+
+            _plugin.playerDuelScore.put(winner.getName(), (_plugin.playerDuelScore.get(winner.getName()) + add));
+            _plugin.chatManager.sendMessage(winner, "&3You got &b" + add + " &3duel score for winning the duel!");
+
+            YAMLManager config = new YAMLManager(_plugin, losser.getName() + ".yml");
+            config.getConfig().set("dualscore", (config.getConfig().getInt("dualscore") - sub));
+            config.saveConfig();
         }
 
-        _plugin.playerDuelScore.put(winner.getName(), (_plugin.playerDuelScore.get(winner.getName()) + add));
-        _plugin.chatManager.sendMessage(winner, "&3You got &b" + add + " &3duel score for winning the duel!");
-        _plugin.playerDuelScore.put(losser.getName(), (_plugin.playerDuelScore.get(losser.getName()) - sub));
-        _plugin.chatManager.sendMessage(losser, "&3You lost &b" + sub + " &3duel score for lossing the duel!");
     }
 }

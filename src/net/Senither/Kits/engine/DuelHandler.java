@@ -249,7 +249,7 @@ public class DuelHandler
             boolean check = false;
             String other = null;
             for (String sender : inProgress.getPlayerNames()) {
-                if (sender.equals(sender)) {
+                if (sender.equals(player)) {
                     check = true;
                 } else {
                     other = sender;
@@ -264,10 +264,7 @@ public class DuelHandler
 
                 _plugin.chatManager.broadcastPluginMessage("&b" + other + " &3has won a duel against &b" + player + "&3!");
 
-                inProgress.cancelQueue(_plugin.mapHandler.getSpawnLocation());
-                inProgress = null;
-                counter = 6;
-                stage = 0;
+                endDuel();
             }
 
             return;

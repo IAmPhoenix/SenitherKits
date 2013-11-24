@@ -72,6 +72,31 @@ public class PlayerListener implements Listener
             killer = (Player) arrow.getShooter();
         } else {
             // Player died to lava, void, falldamage or something else..
+            if (_plugin.duel.isPlayerInBattle(player.getName())) {
+                Player duelKiller = Bukkit.getPlayer(_plugin.duel.getBattlePartner(player.getName()));
+                _plugin.chatManager.sendMessage(duelKiller, "&a&lYou have won the duel!");
+                _plugin.chatManager.sendMessage(player, "&a&lYou have lost the duel!");
+
+                _plugin.controller.manageDuelRewards(duelKiller, player);
+
+                _plugin.chatManager.broadcastPluginMessage("&b" + duelKiller.getName() + " &3has won a duel against &b" + player.getName() + "&3!");
+
+                _plugin.duel.endDuel();
+                return;
+            }
+            return;
+        }
+
+        if (_plugin.duel.isPlayerInBattle(player.getName())) {
+            Player duelKiller = Bukkit.getPlayer(_plugin.duel.getBattlePartner(player.getName()));
+            _plugin.chatManager.sendMessage(duelKiller, "&a&lYou have won the duel!");
+            _plugin.chatManager.sendMessage(player, "&a&lYou have lost the duel!");
+
+            _plugin.controller.manageDuelRewards(duelKiller, player);
+
+            _plugin.chatManager.broadcastPluginMessage("&b" + duelKiller.getName() + " &3has won a duel against &b" + player.getName() + "&3!");
+
+            _plugin.duel.endDuel();
             return;
         }
 
@@ -125,9 +150,9 @@ public class PlayerListener implements Listener
 
         int killerKS = _plugin.playerKillstreak.get(killer.getName()) + 1;
         _plugin.playerKillstreak.put(killer.getName(), killerKS);
-        
+
         // Resetting kits
-        if(_plugin.playerUsingKits.contains(player.getName())) {
+        if (_plugin.playerUsingKits.contains(player.getName())) {
             _plugin.playerUsingKits.remove(player.getName());
         }
 

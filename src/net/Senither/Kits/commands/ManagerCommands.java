@@ -221,7 +221,25 @@ public class ManagerCommands implements CommandExecutor
 
     private void duelPlayer(Player player, String[] args)
     {
-        _plugin.chatManager.sendMessage(player, " &eThis feature has not yet been implemented!");
+        if (args.length != 1) {
+            _plugin.chatManager.sendMessage(player, "&cInvailed format!");
+            _plugin.chatManager.sendMessage(player, "&c/<command> <player>");
+            return;
+        }
+
+        Player target = Bukkit.getPlayer(args[0]);
+
+        if (target == null) {
+            _plugin.chatManager.sendMessage(player, "&c" + args[0] + " is not online!");
+            return;
+        }
+        
+        if(player.getName().equals(target.getName())) {
+            _plugin.chatManager.sendMessage(player, "&cYou can't duel yourself!");
+            return;
+        }
+        
+        _plugin.duel.challangePlayer(player, target);
     }
 
     private void stats(Player player, String[] args)
@@ -374,6 +392,10 @@ public class ManagerCommands implements CommandExecutor
             statsLore.add(""); // Another blank line
 
             statsLore.add(ChatColor.GRAY + "Player Worth : " + ChatColor.RED + (_plugin.playerWorth.get(target.getName())));
+            
+            statsLore.add(""); // Another blank line
+            
+            statsLore.add(ChatColor.GRAY + "Duel Score : " + ChatColor.RED + _plugin.playerDuelScore.get(target.getName()));
 
             statsMeta.setLore(statsLore);
             statsMeta.setDisplayName(ChatColor.RED + "Player Stats");
@@ -407,6 +429,7 @@ public class ManagerCommands implements CommandExecutor
             _plugin.chatManager.sendMessage(player, "kills&f: A players kills");
             _plugin.chatManager.sendMessage(player, "deaths&f: A players kills");
             _plugin.chatManager.sendMessage(player, "killstreak&f: A players kills");
+            _plugin.chatManager.sendMessage(player, "duel&f: A players duel score");
             _plugin.chatManager.sendMessage(player, "Format:&f /modify <player> <virable> <value>");
             return;
         }
@@ -439,6 +462,8 @@ public class ManagerCommands implements CommandExecutor
         } else if (args[1].equalsIgnoreCase("killstreak")) {
             _plugin.playerKillstreak.put(target.getName(), value);
             _plugin.controller.calPlayerWorth(player, true);
+        } else if (args[1].equalsIgnoreCase("duel")) {
+            _plugin.playerDuelScore.put(target.getName(), value);
         } else {
             _plugin.chatManager.sendMessage(player, "&cInvalid format!");
             _plugin.chatManager.sendMessage(player, "Format:&f /modify <player> <virable> <value>");

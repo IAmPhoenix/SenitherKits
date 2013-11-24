@@ -93,6 +93,7 @@ public class Controller
         _plugin.playerEco.put(player.getName(), config.getConfig().getDouble("credits"));
         _plugin.playerDeaths.put(player.getName(), config.getConfig().getInt("deaths"));
         _plugin.playerKills.put(player.getName(), config.getConfig().getInt("kills"));
+        _plugin.playerDuelScore.put(player.getName(), config.getConfig().getInt("dualscore"));
         _plugin.playerWorth.put(player.getName(), 10D);
         _plugin.playerLog.put(player.getName(), 0);
 
@@ -108,6 +109,7 @@ public class Controller
         config.getConfig().set("credits", _plugin.playerEco.get(player.getName()));
         config.getConfig().set("kills", _plugin.playerKills.get(player.getName()));
         config.getConfig().set("deaths", _plugin.playerDeaths.get(player.getName()));
+        config.getConfig().set("dualscore", _plugin.playerDuelScore.get(player.getName()));
 
         // This is only TEMP!
         // Set new values for later updates
@@ -138,7 +140,7 @@ public class Controller
 
     public void removePlayer(Player player)
     {
-        //_plugin.duel.removePlayer(player.getName());
+        _plugin.duel.removePlayer(player.getName());
         _plugin.playerKillstreak.remove(player.getName());
         _plugin.playerEco.remove(player.getName());
         _plugin.playerDeaths.remove(player.getName());
@@ -147,6 +149,7 @@ public class Controller
         _plugin.slowList.remove(player.getName());
         _plugin.weakList.remove(player.getName());
         _plugin.playerLog.remove(player.getName());
+        _plugin.playerDuelScore.remove(player.getName());
         hungerList.remove(player.getName());
         buildList.remove(player.getName());
         pvpList.remove(player.getName());
@@ -432,7 +435,34 @@ public class Controller
             // Give the player regen
             player.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, 100, 2));
 
-            _plugin.chatManager.sendMessage(player, "&aYou just got extra regen! How luck are you!?");
+            _plugin.chatManager.sendMessage(player, "&aYou just got extra regen! How lucky are you!?");
         }
+    }
+
+    public void manageDuelRewards(Player winner, Player losser)
+    {
+        int elo = _plugin.playerDuelScore.get(losser.getName());
+
+        int add = 1;
+        int sub = 0;
+
+        if (elo <= -50) {
+            sub = 1;
+        } else if (elo <= 0) {
+            sub = 1;
+        } else if (elo <= 75) {
+            sub = 1;
+        } else if (elo <= 150) {
+            sub = 1;
+        } else if (elo <= 300) {
+            sub = 2;
+        } else if (elo <= 500) {
+            sub = 2;
+        }
+
+        _plugin.playerDuelScore.put(winner.getName(), (_plugin.playerDuelScore.get(winner.getName()) + add));
+        _plugin.chatManager.sendMessage(winner, "&3You got &b" + add + " &3duel score for winning the duel!");
+        _plugin.playerDuelScore.put(losser.getName(), (_plugin.playerDuelScore.get(losser.getName()) - sub));
+        _plugin.chatManager.sendMessage(losser, "&3You lost &b" + sub + " &3duel score for lossing the duel!");
     }
 }

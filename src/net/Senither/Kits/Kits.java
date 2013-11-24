@@ -56,6 +56,7 @@ public class Kits extends JavaPlugin
     public HashMap<String, Integer> playerKills = new HashMap<String, Integer>();
     public HashMap<String, Integer> playerDeaths = new HashMap<String, Integer>();
     public HashMap<String, Integer> playerLog = new HashMap<String, Integer>();
+    public HashMap<String, Integer> playerDuelScore = new HashMap<String, Integer>();
     // Players in these lists will have the debuff enabled
     public List<String> slowList = new ArrayList<String>();
     public List<String> weakList = new ArrayList<String>();
@@ -78,7 +79,7 @@ public class Kits extends JavaPlugin
         scoreboard = new ScoreboardManager(this);
         mapHandler = new MapHandler(this);
         vanish = new VanishHandler(this);
-        //duel = new DuelHandler(this);
+        duel = new DuelHandler(this);
 
         // Create command executers
         getCommand("map").setExecutor(mapHandler);

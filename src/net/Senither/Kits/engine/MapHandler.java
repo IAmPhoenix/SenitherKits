@@ -122,12 +122,14 @@ public class MapHandler implements CommandExecutor
         location.getWorld().setDifficulty(Difficulty.HARD);
 
         for (Player player : Bukkit.getOnlinePlayers()) {
-            player.teleport(location);
+            if (!_plugin.duel.isPlayerInBattle(player.getName())) {
+                player.teleport(location);
 
-            // Disable PvP
-            if (_plugin.controller.hasPvPEnabled(player.getName())) {
-                _plugin.controller.pvpList.add(player.getName());
-                TagAPI.refreshPlayer(player);
+                // Disable PvP
+                if (_plugin.controller.hasPvPEnabled(player.getName())) {
+                    _plugin.controller.pvpList.add(player.getName());
+                    TagAPI.refreshPlayer(player);
+                }
             }
         }
     }
@@ -144,21 +146,21 @@ public class MapHandler implements CommandExecutor
     public boolean onCommand(CommandSender sender, Command cmd, String commandLable, String[] args)
     {
         Player player = null;
-        
-        if(sender instanceof Player) {
+
+        if (sender instanceof Player) {
             player = (Player) sender;
         } else {
             _plugin.chatManager.sendMessage(sender, "You can't use that command in-game!");
             return true;
         }
-        
-        if(!player.hasPermission(_plugin.permissions.MANAGE_MAP)) {
+
+        if (!player.hasPermission(_plugin.permissions.MANAGE_MAP)) {
             _plugin.chatManager.missingPermission(player, _plugin.permissions.MANAGE_MAP);
             return true;
         }
-        
+
         _plugin.chatManager.sendMessage(player, " &eThis feature has not yet been implemented!");
-        
+
         return true;
     }
 }

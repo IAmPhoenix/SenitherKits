@@ -41,6 +41,7 @@ public class ScoreboardManager
         playerTeam.addPlayer(Bukkit.getOfflinePlayer("Killstreak:"));
         playerTeam.addPlayer(Bukkit.getOfflinePlayer("K/D Ratio:"));
         playerTeam.addPlayer(Bukkit.getOfflinePlayer("PvP Score:"));
+        playerTeam.addPlayer(Bukkit.getOfflinePlayer("Duel Score:"));
 
         p.setScoreboard(board);
 
@@ -53,6 +54,7 @@ public class ScoreboardManager
         Score creditsScore = o.getScore(Bukkit.getOfflinePlayer("Credits:"));
         Score kdScore = o.getScore(Bukkit.getOfflinePlayer("K/D Ratio:"));
         Score pvpScore = o.getScore(Bukkit.getOfflinePlayer("PvP Score:"));
+        Score duelScore = o.getScore(Bukkit.getOfflinePlayer("Duel Score:"));
 
         worthScore.setScore(999);
         creditsScore.setScore(999);
@@ -61,6 +63,7 @@ public class ScoreboardManager
         killstreakScore.setScore(999);
         kdScore.setScore(999);
         pvpScore.setScore(999);
+        duelScore.setScore(999);
     }
 
     public void updatePlayer(Player player)
@@ -95,6 +98,9 @@ public class ScoreboardManager
 
                 Score pvpScore = o.getScore(Bukkit.getOfflinePlayer("PvP Score:"));
 
+                Score duelScore = o.getScore(Bukkit.getOfflinePlayer("Duel Score:"));
+                int duel = _plugin.playerDuelScore.get(name);
+
                 worthScore.setScore(worth);
                 creditsScore.setScore(credits);
                 killsScore.setScore(kills);
@@ -102,6 +108,7 @@ public class ScoreboardManager
                 killstreakScore.setScore(killstreak);
                 kdScore.setScore(kdRatio);
                 pvpScore.setScore(kills - deaths);
+                duelScore.setScore(duel);
 
                 player.setScoreboard(b);
             }

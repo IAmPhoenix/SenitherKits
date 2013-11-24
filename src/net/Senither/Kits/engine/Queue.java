@@ -8,6 +8,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.kitteh.tag.TagAPI;
 
 public class Queue
 {
@@ -106,14 +107,16 @@ public class Queue
      */
     public void cancelQueue(Location spawnPoint)
     {
-        // Reset the players inventory
-        resetPlayerData();
-        for(Player player : getPlayers()) {
-            if(player != null) {
+        for (Player player : getPlayers()) {
+            if (player != null) {
                 player.setHealth(20d);
                 player.setFoodLevel(20);
+                player.setFireTicks(0);
                 player.teleport(spawnPoint);
+                TagAPI.refreshPlayer(player);
             }
         }
+        // Reset the players inventory
+        resetPlayerData();
     }
 }

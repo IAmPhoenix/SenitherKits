@@ -20,5 +20,6 @@ public class Permissions
      public final String MANAGE_MODIFY_KILLS = prefix + "admin.modify.kills";
      public final String MANAGE_MODIFY_DEATHS = prefix + "admin.modify.deaths";
      public final String MANAGE_MODIFY_KILLSTREAK = prefix + "admin.modify.killstreak";
+     public final String MANAGE_MODIFY_DUELSCORE = prefix + "admin.modify.duelscore";
      public final String MANAGE_MAP = prefix + "admin.map";
 }

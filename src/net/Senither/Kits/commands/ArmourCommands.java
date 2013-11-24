@@ -32,7 +32,14 @@ public class ArmourCommands implements CommandExecutor
 
         if (commandLable.equalsIgnoreCase("armor")) {
             armourMenu(player);
-        } else if (commandLable.equalsIgnoreCase("diamond")) {
+        }
+
+        if (_plugin.duel.isPlayerInBattle(player.getName())) {
+            _plugin.chatManager.sendMessage(player, "&cYou can't use this command while in a duel!");
+            return true;
+        }
+
+        if (commandLable.equalsIgnoreCase("diamond")) {
             diamond(player);
         } else if (commandLable.equalsIgnoreCase("iron")) {
             iron(player);

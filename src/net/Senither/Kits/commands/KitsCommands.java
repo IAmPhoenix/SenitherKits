@@ -40,7 +40,14 @@ public class KitsCommands implements CommandExecutor
             _plugin.chatManager.sendMessage(player, "&6/Mage&f: Price: 200 Credits");
             _plugin.chatManager.sendMessage(player, "&6/Ninja&f: Price: 300 Credits");
             return true;
-        } else if (commandLable.equalsIgnoreCase("Knight")) {
+        }
+
+        if (_plugin.duel.isPlayerInBattle(player.getName())) {
+            _plugin.chatManager.sendMessage(player, "&cYou can't use this command while in a duel!");
+            return true;
+        }
+
+        if (commandLable.equalsIgnoreCase("Knight")) {
             knight(player);
         } else if (commandLable.equalsIgnoreCase("Archer")) {
             archer(player);

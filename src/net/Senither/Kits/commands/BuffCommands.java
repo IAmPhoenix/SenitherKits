@@ -38,6 +38,9 @@ public class BuffCommands implements CommandExecutor
         if(_plugin.playerUsingKits.contains(player.getName())) {
             _plugin.chatManager.sendMessage(player, "&cYou can't use this command while wearing a special kit a kit!");
             return true;
+        } else if(_plugin.duel.isPlayerInBattle(player.getName())) {
+            _plugin.chatManager.sendMessage(player, "&cYou can't use this command while in a duel!");
+            return true;
         }
         
         if (commandLable.equalsIgnoreCase("debuffs")) {

@@ -120,8 +120,11 @@ public class DuelHandler
 
                         endDuel();
                     } else if (counter == 60) {
-                        counter--;
+                        for (Player player : inProgress.getPlayers()) {
+                            _plugin.chatManager.sendMessage(player, "&3You have &b1 &3minute left before the match will end in a tie!");
+                        }
                     }
+                    counter--;
                 }
             }
         }, 40, 20);

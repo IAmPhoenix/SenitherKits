@@ -145,6 +145,6 @@ public class ExtraCommands implements CommandExecutor
         _plugin.playerEco.put(target.getName(), (_plugin.playerEco.get(target.getName()) + payment));
 
         _plugin.chatManager.sendMessage(player, "&aYou have sent " + payment + " to " + target.getName() + "!");
-        _plugin.chatManager.sendMessage(player, "&a" + player.getName() + " has sent you " + payment + " credits!");
+        _plugin.chatManager.sendMessage(target, "&a" + player.getName() + " has sent you " + payment + " credits!");
     }
 }

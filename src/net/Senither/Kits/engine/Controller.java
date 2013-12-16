@@ -8,6 +8,7 @@ import net.Senither.Kits.Kits;
 import net.Senither.Kits.ulits.YAMLManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
@@ -447,18 +448,28 @@ public class Controller
             int add = 1;
             int sub = 0;
 
-            if (elo <= -50) {
-                sub = 1;
+            if (elo <= -25) {
+                sub = 0;
             } else if (elo <= 0) {
                 sub = 1;
             } else if (elo <= 75) {
-                sub = 1;
+                sub = 2;
             } else if (elo <= 150) {
-                sub = 1;
+                sub = 3;
             } else if (elo <= 300) {
-                sub = 2;
+                sub = 4;
             } else if (elo <= 500) {
-                sub = 2;
+                sub = 5;
+            } else if (elo <= 600) {
+                sub = 10;
+            } else if (elo <= 700) {
+                sub = 20;
+            } else if (elo <= 800) {
+                sub = 30;
+            } else if (elo <= 900) {
+                sub = 40;
+            } else if (elo <= 1000) {
+                sub = 50;
             }
 
             _plugin.playerDuelScore.put(winner.getName(), (_plugin.playerDuelScore.get(winner.getName()) + add));

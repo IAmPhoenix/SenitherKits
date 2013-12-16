@@ -83,7 +83,7 @@ public class Kits extends JavaPlugin
 
         // Create command executers
         getCommand("map").setExecutor(mapHandler);
-        
+
         ArmourCommands ac = new ArmourCommands(this);
         getCommand("armor").setExecutor(ac);
         getCommand("diamond").setExecutor(ac);

@@ -1,6 +1,6 @@
 name: Kits
 main: net.Senither.Kits.Kits
-version: 0.9.7 R1.2
+version: 0.9.7 R1.3
 author: Senither
 depend: [TagAPI]
 description: Kit PvP Plugin

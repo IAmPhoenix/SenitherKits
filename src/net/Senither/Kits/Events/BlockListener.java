@@ -50,7 +50,6 @@ public class BlockListener implements Listener
         Entity ent = e.getEntity();
         if ((ent instanceof TNTPrimed) || (ent != null)) {
             e.blockList().clear();
-            return;
         }
     }
 
